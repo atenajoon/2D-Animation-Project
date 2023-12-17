@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D _rigidbody;
+    private Vector2 _movementInput;
 
     private void Awake()
     {
@@ -12,7 +14,10 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        _rigidbody.velocity = new Vector2(1, 0.5f);
+        _rigidbody.velocity = _movementInput;
     }
-
+    private void OnMove(InputValue inputValue)
+    {
+        _movementInput = inputValue.Get<Vector2>();
+    }
 }
