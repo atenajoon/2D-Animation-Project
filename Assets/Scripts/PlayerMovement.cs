@@ -7,14 +7,14 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D _rigidbody;
     private Vector2 _movementInput;
-
+    [SerializeField] private float _speed;
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
     }
     private void FixedUpdate()
     {
-        _rigidbody.velocity = _movementInput;
+        _rigidbody.velocity = _movementInput * _speed;
     }
     private void OnMove(InputValue inputValue)
     {
