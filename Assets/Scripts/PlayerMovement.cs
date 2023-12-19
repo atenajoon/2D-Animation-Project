@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private bool _isJumping;
     private float _moveHorizontal;
     private float _moveVertical;
+    public Animator _animator;
 
 
     private void Awake()
@@ -30,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
         // this gives us a number (-1 or 1) on keypress to indicate moving directions
         _moveHorizontal = Input.GetAxisRaw("Horizontal");
         _moveVertical = Input.GetAxisRaw("Vertical");
+
+        
     }
     private void FixedUpdate()
     {
@@ -37,6 +40,10 @@ public class PlayerMovement : MonoBehaviour
         if(_moveHorizontal > 0 || _moveHorizontal < 0)
         {
             _rigidbody.AddForce(new Vector2(_moveHorizontal * _moveSpeed, 0f), ForceMode2D.Impulse);
+            _animator.SetFloat("MoveSpeed", Mathf.Abs(_moveHorizontal * _moveSpeed));
+        } else 
+        {
+            _animator.SetFloat("MoveSpeed", 0); 
         }
 
         if(!_isJumping && _moveVertical > 0)
@@ -47,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
         // _smoothedMovementInput = Vector2.SmoothDamp(_smoothedMovementInput, _movementInput, ref _movementInputSmoothedVelocity, 0.1f);
         // _rigidbody.velocity = _smoothedMovementInput * _moveSpeed;
         // _rigidbody.velocity = _movementInput * _moveSpeed;
+
+        
     }
 
     void OnTriggerEnter2D(Collider2D collision)
