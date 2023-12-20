@@ -62,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
                 Flip();
             }
 
+        // if is moving and shooting -> FirePoint Y gets reduced
         } else 
         {
             _animator.SetFloat("MoveSpeed", 0); 
