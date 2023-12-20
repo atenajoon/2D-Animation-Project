@@ -14,4 +14,10 @@ public class Bullet : MonoBehaviour
         // I am using "right" instead of "forwrd" bcs forward is for Z axis and in 2D game we don't have Z axis. so "right" does the work for the X axis
         _rigidbody.velocity = transform.right * _speed;
     }
+
+    void OnTriggerEnter2D (Collider2D hitInfo)
+    {
+        Debug.Log(hitInfo.name);
+        Destroy(gameObject); // destroy the bullet
+    }
 }
