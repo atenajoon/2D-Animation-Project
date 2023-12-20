@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         // this gives us a number (-1 or 1) on keypress to indicate moving directions
+        // I might not need to use it if I improve my movement code with Unity New Input System
         _moveHorizontal = Input.GetAxisRaw("Horizontal");
         _moveVertical = Input.GetAxisRaw("Vertical");
     }
@@ -48,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         // might want to change it with: https://github.com/Brackeys/2D-Character-Controller/blob/master/CharacterController2D.cs
         if(_moveHorizontal > 0 || _moveHorizontal < 0)
         {
+            // I might not need to use it if I improve my movement code with Unity New Input System??
             _rigidbody.AddForce(new Vector2(_moveHorizontal * _moveSpeed, 0f), ForceMode2D.Impulse);
             _animator.SetFloat("MoveSpeed", Mathf.Abs(_moveHorizontal * _moveSpeed));
 
@@ -67,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(!_isJumping && _moveVertical > 0)
         {
+            // I might not need to use it if I improve my movement code with Unity New Input System??
             _rigidbody.AddForce(new Vector2(0f, _moveVertical * _jumpForce), ForceMode2D.Impulse);
         } 
     }
