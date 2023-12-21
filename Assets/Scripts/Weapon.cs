@@ -6,7 +6,7 @@ public class Weapon : MonoBehaviour
 {
     public Transform _firePoint;
     public GameObject _bulletPrefab;
-    public Animator _animator;
+    public Animator animator;
 
     // Update is called once per frame
     void Update()
@@ -15,12 +15,12 @@ public class Weapon : MonoBehaviour
         if(Input.GetButtonDown("Fire1"))
         {
             // Apparently there is an Animation Layer concept I might want to apply later on
-            _animator.SetBool("IsShooting", true);
+            animator.SetBool("IsShooting", true);
             Shoot();
         } 
         else if(Input.GetButtonUp("Fire1"))
         {             
-            _animator.SetBool("IsShooting", false);
+            animator.SetBool("IsShooting", false);
         }
     }
 

@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 240044384}
   - component: {fileID: 240044385}
   m_Layer: 0
-  m_Name: Player-move-input
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 1
   _jumpForce: 25
-  _animator: {fileID: 240044382}
+  animator: {fileID: 240044382}
 --- !u!114 &240044381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,7 +358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _firePoint: {fileID: 1843705290}
   _bulletPrefab: {fileID: 4904765837914799082, guid: d824d75116a0143aca967b281b29d09a, type: 3}
-  _animator: {fileID: 240044382}
+  animator: {fileID: 240044382}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

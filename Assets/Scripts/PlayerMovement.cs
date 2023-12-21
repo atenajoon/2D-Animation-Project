@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private bool _isJumping;
     private float _moveHorizontal;
     private float _moveVertical;
-    public Animator _animator;
+    public Animator animator;
 
 
     private void Awake()
@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
         {
             // I might not need to use it if I improve my movement code with Unity New Input System??
             _rigidbody.AddForce(new Vector2(_moveHorizontal * _moveSpeed, 0f), ForceMode2D.Impulse);
-            _animator.SetFloat("MoveSpeed", Mathf.Abs(_moveHorizontal * _moveSpeed));
+            animator.SetFloat("MoveSpeed", Mathf.Abs(_moveHorizontal * _moveSpeed));
 
             if (_moveHorizontal > 0 && !_playerFacingRight)
             {
@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         // if is moving and shooting -> FirePoint Y gets reduced
         } else 
         {
-            _animator.SetFloat("MoveSpeed", 0); 
+            animator.SetFloat("MoveSpeed", 0); 
         }
 
         if(!_isJumping && _moveVertical > 0)
@@ -88,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
         if(collision.gameObject.tag == "Platform")
         {
             _isJumping = false;
-            _animator.SetBool("IsJumping", false);
+            animator.SetBool("IsJumping", false);
         }
     }
 
@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
         if(collision.gameObject.tag == "Platform")
         {
             _isJumping = true;
-            _animator.SetBool("IsJumping", true);
+            animator.SetBool("IsJumping", true);
         }
     }
 }
