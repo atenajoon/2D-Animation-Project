@@ -19,7 +19,8 @@ public class Weapon : MonoBehaviour
             Shoot();
         } 
         else if(Input.GetButtonUp("Fire1"))
-        {             
+        {  
+            //  this needs to be changed, or the bullet should keep spwning as long as the button is down!
             animator.SetBool("IsShooting", false);
         }
     }

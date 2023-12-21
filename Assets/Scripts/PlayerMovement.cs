@@ -63,8 +63,11 @@ public class PlayerMovement : MonoBehaviour
                 Flip();
             }
 
-        // I need to change this: if is moving and shooting -> FirePoint Y gets reduced
-        } else 
+        // I need to change this: if is moving and shooting -> FirePoint Y gets reduced??
+        //  GetComponent<Weapon>()._firePoint.transform.y = -0.70f;
+
+        } 
+        else 
         {
             animator.SetFloat("MoveSpeed", 0); 
         }
