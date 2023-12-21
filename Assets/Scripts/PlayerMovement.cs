@@ -45,11 +45,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        // Rigidbody.AddForce(Vector2 Force for x & y axis, ForceMode);
-        // might want to change it with: https://github.com/Brackeys/2D-Character-Controller/blob/master/CharacterController2D.cs
+        // might want to change it to Moving the character by finding the target velocity
+        // with: https://github.com/Brackeys/2D-Character-Controller/blob/master/CharacterController2D.cs
         if(_moveHorizontal > 0 || _moveHorizontal < 0)
         {
             // I might not need to use it if I improve my movement code with Unity New Input System??
+            // for now, >> Rigidbody.AddForce(Vector2 Force for x & y axis, ForceMode);
             _rigidbody.AddForce(new Vector2(_moveHorizontal * _moveSpeed, 0f), ForceMode2D.Impulse);
             animator.SetFloat("MoveSpeed", Mathf.Abs(_moveHorizontal * _moveSpeed));
 
@@ -62,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
                 Flip();
             }
 
-        // if is moving and shooting -> FirePoint Y gets reduced
+        // I need to change this: if is moving and shooting -> FirePoint Y gets reduced
         } else 
         {
             animator.SetFloat("MoveSpeed", 0); 
