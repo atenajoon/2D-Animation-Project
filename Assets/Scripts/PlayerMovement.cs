@@ -6,9 +6,6 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D _rigidbody;
-    // private Vector2 _movementInput; // target position
-    // private Vector2 _smoothedMovementInput; // current position
-    // private Vector2 _movementInputSmoothedVelocity; // current velocity, which is modified every time the function is called
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _jumpForce;
     private bool _playerFacingRight = true;
@@ -36,11 +33,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Move();
-        // Vector2.SmoothDamp(currentPosition, targetPosition, ref currentVelocity, smoothTime);
-        // _smoothedMovementInput = Vector2.SmoothDamp(_smoothedMovementInput, _movementInput, ref _movementInputSmoothedVelocity, 0.1f);
-        // _rigidbody.velocity = _smoothedMovementInput * _moveSpeed;
-        // _rigidbody.velocity = _movementInput * _moveSpeed;      
+        Move();  
     }
 
     private void Move()
@@ -81,7 +74,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Flip()
     {
-        // Switch the way the player is labelled as facing
         _playerFacingRight = !_playerFacingRight;
 
         transform.Rotate(0f, 180f, 0f);
