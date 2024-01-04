@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     // getting access to the PlayerActionControls to detect the inputs. this field will contain the actions wrapper instance
     private PlayerActionControls playerActionControls;
+    private Rigidbody2D _rigidbody;
 
     [SerializeField] private float _moveSpeed, _jumpForce;
     
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
     {
         // instantiate the actions wrapper class
         playerActionControls = new PlayerActionControls();
+        _rigidbody = GetComponent<Rigidbody2D>();
 
         // for the "jump" action, we add a callback method for the "performed" phase
         playerActionControls.Land.Jump.performed += OnJump;
@@ -35,6 +37,7 @@ public class PlayerController : MonoBehaviour
     private void OnJump(InputAction.CallbackContext context)
     {
         // this is the "jump" action callback method
+        _rigidbody.AddForce(new Vector2(0f, _jumpForce), ForceMode2D.Impulse);
         Debug.Log("jump");
     }
 
