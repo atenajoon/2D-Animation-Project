@@ -143,7 +143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &203732502
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -618,19 +618,19 @@ GameObject:
   m_Component:
   - component: {fileID: 1285241631}
   - component: {fileID: 1285241630}
-  - component: {fileID: 1285241629}
+  - component: {fileID: 1285241632}
   - component: {fileID: 1285241627}
+  - component: {fileID: 1285241629}
   - component: {fileID: 1285241625}
   - component: {fileID: 1285241624}
   - component: {fileID: 1285241623}
-  - component: {fileID: 1285241632}
   m_Layer: 0
   m_Name: TestPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1285241623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -722,11 +722,11 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 5
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 5
+  m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -810,8 +810,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44155d1125e54bd281e72c2a0925f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 50
-  _jumpForce: 3
+  _moveSpeed: 5
+  _jumpForce: 5
 --- !u!1 &1638009789
 GameObject:
   m_ObjectHideFlags: 0

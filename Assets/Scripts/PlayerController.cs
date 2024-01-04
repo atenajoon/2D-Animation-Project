@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private PlayerActionControls playerActionControls;
     private Rigidbody2D _rigidbody;
     private bool _isGrounded;
+    private bool _playerFacingRight = true;
 
     [SerializeField] private float _moveSpeed, _jumpForce;
     
@@ -25,6 +26,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        OnMove();
+    }
+
+
+    private void OnMove()
+    {
         // Read the movement input value each frame
         float movementInput = playerActionControls.Land.Move.ReadValue<float>();
 
@@ -33,9 +40,20 @@ public class PlayerController : MonoBehaviour
 
         // Move the player using Translate for smoother movement
         transform.Translate(new Vector3(horizontalMovement, 0, 0));
+
+        // instead of changing the local scale in the Flip method I tried to change the rb.velocity, but the character wouldn't move anymore. Why?
+        // _rigidbody.velocity = new Vector2(horizontalMovement, _rigidbody.velocity.y);
+
+        // Flip the character sprite to the move direction
+        if (movementInput > 0 && !_playerFacingRight)
+        {
+            Flip();
+        }
+        else if(movementInput < 0 && _playerFacingRight)
+        {
+            Flip();
+        }
     }
-
-
     private void OnJump(InputAction.CallbackContext context)
     {
         // This is the "jump" action callback method
@@ -43,8 +61,18 @@ public class PlayerController : MonoBehaviour
         {
             _rigidbody.AddForce(new Vector2(0f, _jumpForce), ForceMode2D.Impulse);
             _isGrounded = false;
-            Debug.Log("jump");
         }
+    }
+
+    private void Flip()
+    {
+        _playerFacingRight = !_playerFacingRight;
+        // transform.Rotate(0f, 180f, 0f);
+
+        // Flip the character by changing localScale.x
+        Vector3 newScale = transform.localScale;
+        newScale.x *= -1;
+        transform.localScale = newScale;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
