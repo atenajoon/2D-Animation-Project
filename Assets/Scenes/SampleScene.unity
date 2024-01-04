@@ -182,8 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44155d1125e54bd281e72c2a0925f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 2
-  _jumpForce: 2
+  _moveSpeed: 5
+  _jumpForce: 5
 --- !u!23 &203732504
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -990,7 +990,7 @@ GameObject:
   - component: {fileID: 1993067853}
   m_Layer: 0
   m_Name: FloorTilemap
-  m_TagString: Platform
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
