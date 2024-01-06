@@ -5,19 +5,16 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    private PlayerActionControls playerActionControls; // Get access to the PlayerActionControls to detect the inputs. this field will contain the actions wrapper instance
+    public Animator animator;
     public Transform _firePoint;
     public GameObject _bulletPrefab;
-
-    // Get access to the PlayerActionControls to detect the inputs. this field will contain the actions wrapper instance
-    private PlayerActionControls playerActionControls;
     private Rigidbody2D _rigidbody;
     private bool _isGrounded;
     private bool _playerFacingRight = true;
-    private bool _isFiring = false;
+    private bool _isFiring = false; // equivalent to GetButtonDown()/GetButtonUp()
     private float _fireTimer = 0f; // Timer to control firing rate
     private float _fireRate = 0.1f; // Time delay between firing bullets
-    public Animator animator;
-
     [SerializeField] private float _moveSpeed, _jumpForce;
     
     void Awake()
@@ -27,7 +24,7 @@ public class PlayerController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _isGrounded = false;
 
-        // For the "jump" action, we add a callback method for the "performed" phase
+        // For the jump & fire actions, adding a callback method for the "performed" phase
         playerActionControls.Land.Jump.performed += OnJump;
 
         playerActionControls.Land.Fire.performed += OnFire;
@@ -91,6 +88,7 @@ public class PlayerController : MonoBehaviour
             Flip();
         }
     }
+
     private void OnJump(InputAction.CallbackContext context)
     {
         // This is the "jump" action callback method
@@ -110,6 +108,7 @@ public class PlayerController : MonoBehaviour
         Vector3 newScale = transform.localScale;
         newScale.x *= -1;
         transform.localScale = newScale;
+        //reset the FirePoint localScale.x too?
     }
 
 
