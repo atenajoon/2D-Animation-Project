@@ -182,6 +182,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44155d1125e54bd281e72c2a0925f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _firePoint: {fileID: 0}
+  _bulletPrefab: {fileID: 0}
+  fireRate: 0.3
+  animator: {fileID: 0}
   _moveSpeed: 5
   _jumpForce: 5
 --- !u!23 &203732504
@@ -670,7 +674,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1285241622}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 9f89c8079791b498baa218ef1f88d646, type: 2}
   m_CullingMode: 0
@@ -790,7 +794,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1285241622}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.8, y: -0.053, z: 0}
+  m_LocalPosition: {x: -0.08, y: -0.053, z: 0}
   m_LocalScale: {x: 1.4786162, y: 1.4784489, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -810,6 +814,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44155d1125e54bd281e72c2a0925f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _firePoint: {fileID: 1669631762}
+  _bulletPrefab: {fileID: 4904765837914799082, guid: d824d75116a0143aca967b281b29d09a, type: 3}
+  fireRate: 0.3
+  animator: {fileID: 1285241625}
   _moveSpeed: 5
   _jumpForce: 5
 --- !u!1 &1638009789

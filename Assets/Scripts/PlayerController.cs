@@ -5,11 +5,18 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public Transform _firePoint;
+    public GameObject _bulletPrefab;
+
     // Get access to the PlayerActionControls to detect the inputs. this field will contain the actions wrapper instance
     private PlayerActionControls playerActionControls;
     private Rigidbody2D _rigidbody;
     private bool _isGrounded;
     private bool _playerFacingRight = true;
+    private bool _isFiring = false;
+    private float fireTimer = 0f; // Timer to control firing rate
+    public float fireRate = 0.0f; // Time delay between firing bullets
+    public Animator animator;
 
     [SerializeField] private float _moveSpeed, _jumpForce;
     
@@ -22,6 +29,8 @@ public class PlayerController : MonoBehaviour
 
         // For the "jump" action, we add a callback method for the "performed" phase
         playerActionControls.Land.Jump.performed += OnJump;
+
+        playerActionControls.Land.Fire.performed += OnFire;
     }
 
     void Update()
@@ -29,7 +38,57 @@ public class PlayerController : MonoBehaviour
         OnMove();
     }
 
+    void FixedUpdate()
+    {
+        if (_isFiring)
+        {
+            fireTimer += Time.fixedDeltaTime;
+            // Check if enough time has passed to fire another bullet
 
+            if (fireTimer >= fireRate)
+            {
+                Shoot();
+                fireTimer = 0f; // Reset the timer
+            }
+        }
+    }
+
+
+     void OnFire(InputAction.CallbackContext context)
+     {
+         if (context.started)
+      {
+          _isFiring = true; // Start firing bullets
+
+          animator.SetBool("IsShooting", true);
+           Debug.Log("FireStarted");
+      }
+
+      if (context.performed)
+      {
+          _isFiring = true;
+
+          animator.SetBool("IsShooting", true);
+          Debug.Log("FirePerformed");
+      }
+
+      if (context.canceled)
+      {
+          _isFiring = false;
+          animator.SetBool("IsShooting", false);
+          Debug.Log("FireCanceled");
+      }
+     }
+
+    private void Shoot()
+    {
+        if (_isFiring)
+        {
+            // Instantiate(whatToSpawn, whereToSpawn, rotation)
+            Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+            Debug.Log("Shooot");
+        }
+    }
     private void OnMove()
     {
         // Read the movement input value each frame
@@ -56,6 +115,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnJump(InputAction.CallbackContext context)
     {
+         Debug.Log("Jump ctx" + context);
         // This is the "jump" action callback method
         if(_isGrounded)
         {
@@ -74,6 +134,7 @@ public class PlayerController : MonoBehaviour
         newScale.x *= -1;
         transform.localScale = newScale;
     }
+
 
     void OnCollisionEnter2D(Collision2D collision)
     {
