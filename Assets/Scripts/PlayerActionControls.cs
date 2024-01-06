@@ -51,8 +51,8 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
                     ""id"": ""df2b6543-c991-4fa8-b6f4-81a1bb863be4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -148,7 +148,7 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""2a30aebc-f363-4088-bd3b-6ee82e665864"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Fire"",
