@@ -14,8 +14,8 @@ public class PlayerController : MonoBehaviour
     private bool _isGrounded;
     private bool _playerFacingRight = true;
     private bool _isFiring = false;
-    private float fireTimer = 0f; // Timer to control firing rate
-    public float fireRate = 0.1f; // Time delay between firing bullets
+    private float _fireTimer = 0f; // Timer to control firing rate
+    private float _fireRate = 0.1f; // Time delay between firing bullets
     public Animator animator;
 
     [SerializeField] private float _moveSpeed, _jumpForce;
@@ -41,14 +41,14 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         // Check if enough time has passed to fire another bullet
-        fireTimer += Time.fixedDeltaTime;
+        _fireTimer += Time.fixedDeltaTime;
     
-        if (fireTimer >= fireRate)
+        if (_fireTimer >= _fireRate)
         {
             if(_isFiring)
                 Fire();
 
-            fireTimer = 0f; // Reset the timer
+            _fireTimer = 0f; // Reset the timer
         }
     }
 
