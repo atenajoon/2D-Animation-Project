@@ -108,7 +108,10 @@ public class PlayerController : MonoBehaviour
         Vector3 newScale = transform.localScale;
         newScale.x *= -1;
         transform.localScale = newScale;
-        //reset the FirePoint localScale.x too?
+        
+        // Flip the FirePoint direction
+        float rotationValue = (_firePoint.rotation.y == 0) ? 180f : 0f;
+        _firePoint.rotation = Quaternion.Euler(0f, rotationValue, 0f);
     }
 
 
