@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public Transform _firePoint;
     public GameObject _bulletPrefab;
     private Rigidbody2D _rigidbody;
-    private bool _isGrounded;
+    private bool _isGrounded = false;
     private bool _playerFacingRight = true;
     private bool _isFiring = false; // equivalent to GetButtonDown()/GetButtonUp()
     private float _fireTimer = 0f; // Timer to control firing rate
@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour
         // Instantiate the actions wrapper class
         playerActionControls = new PlayerActionControls();
         _rigidbody = GetComponent<Rigidbody2D>();
-        _isGrounded = false;
 
         // For the jump & fire actions, adding a callback method for the "performed" phase
         playerActionControls.Land.Jump.performed += OnJump;
@@ -54,6 +53,8 @@ public class PlayerController : MonoBehaviour
      {
         if (context.performed)
         {
+            // Button action Type only has Performed phase, once at pressing the key and once at release
+            // so I flip the _isFiring value on each Performed callback to simutale Started and Cancelled callbacks
             _isFiring = !_isFiring;
             animator.SetBool("IsShooting", _isFiring);
         }
