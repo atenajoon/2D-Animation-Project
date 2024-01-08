@@ -70,14 +70,9 @@ public class PlayerController : MonoBehaviour
         // Read the movement input value each frame
         float movementInput = playerActionControls.Land.Move.ReadValue<float>();
 
-        // Multiply the input value by the movement speed and deltaTime
-        float horizontalMovement = movementInput * _moveSpeed * Time.deltaTime;
-
-        // Move the player using Translate for smoother movement
-        transform.Translate(new Vector3(horizontalMovement, 0, 0));
-
-        // instead of changing the local scale in the Flip method I tried to change the rb.velocity, but the character wouldn't move anymore. Why?
-        // _rigidbody.velocity = new Vector2(horizontalMovement, _rigidbody.velocity.y);
+        // Horizontal movement of the player character
+        float horizontalMovement = movementInput * _moveSpeed;
+        _rigidbody.velocity = new Vector2(horizontalMovement, _rigidbody.velocity.y);
 
         // Flip the character sprite to the move direction
         if (movementInput > 0 && !_playerFacingRight)

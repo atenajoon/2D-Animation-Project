@@ -182,9 +182,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44155d1125e54bd281e72c2a0925f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   _firePoint: {fileID: 0}
   _bulletPrefab: {fileID: 0}
-  animator: {fileID: 0}
   _moveSpeed: 5
   _jumpForce: 5
 --- !u!23 &203732504
@@ -459,9 +459,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44155d1125e54bd281e72c2a0925f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 240044382}
   _firePoint: {fileID: 1843705290}
   _bulletPrefab: {fileID: 4904765837914799082, guid: d824d75116a0143aca967b281b29d09a, type: 3}
-  animator: {fileID: 240044382}
   _moveSpeed: 5
   _jumpForce: 5
 --- !u!1 &519420028
@@ -752,11 +752,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44155d1125e54bd281e72c2a0925f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 1285241625}
   _firePoint: {fileID: 1669631762}
   _bulletPrefab: {fileID: 4904765837914799082, guid: d824d75116a0143aca967b281b29d09a, type: 3}
-  animator: {fileID: 1285241625}
-  _moveSpeed: 5
-  _jumpForce: 5
+  _moveSpeed: 6
+  _jumpForce: 7
 --- !u!1 &1638009789
 GameObject:
   m_ObjectHideFlags: 0
