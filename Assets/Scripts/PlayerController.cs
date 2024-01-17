@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             // Button action Type only has Performed phase, once at pressing the key and once at release
-            // so I flip the _isFiring value on each Performed callback to simutale Started and Cancelled callbacks
+            // so I flip the _isFiring value on each Performed callback to simutale Started and Canceled callbacks
             _isFiring = !_isFiring;
             animator.SetBool("IsShooting", _isFiring);
         }
@@ -68,18 +68,18 @@ public class PlayerController : MonoBehaviour
     private void OnMove()
     {
         // Read the movement input value each frame
-        float movementInput = playerActionControls.Land.Move.ReadValue<float>();
+        float _movementInput = playerActionControls.Land.Move.ReadValue<float>();
 
         // Horizontal movement of the player character
-        float horizontalMovement = movementInput * _moveSpeed;
+        float horizontalMovement = _movementInput * _moveSpeed;
         _rigidbody.velocity = new Vector2(horizontalMovement, _rigidbody.velocity.y);
 
         // Flip the character sprite to the move direction
-        if (movementInput > 0 && !_playerFacingRight)
+        if (_movementInput > 0 && !_playerFacingRight)
         {
             Flip();
         }
-        else if(movementInput < 0 && _playerFacingRight)
+        else if(_movementInput < 0 && _playerFacingRight)
         {
             Flip();
         }
