@@ -48,23 +48,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-     void OnFire(InputAction.CallbackContext context)
-     {
-        if (context.performed)
-        {
-            // Button action Type only has Performed phase, once at pressing the key and once at release
-            // so I flip the _isFiring value on each Performed callback to simutale Started and Canceled callbacks
-            _isFiring = !_isFiring;
-            animator.SetBool("IsShooting", _isFiring);
-        }
-     }
-
-    private void Fire()
-    {
-        // Instantiate(whatToSpawn, whereToSpawn, rotation)
-        Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
-    }
     private void OnMove()
     {
         // Read the movement input value each frame
@@ -95,10 +78,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnFire(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            // Button action Type only has Performed phase, once at pressing the key and once at release
+            // so I flip the _isFiring value on each Performed callback to simutale Started and Canceled callbacks
+            _isFiring = !_isFiring;
+            animator.SetBool("IsShooting", _isFiring);
+        }
+    }
+
     private void Flip()
     {
         _playerFacingRight = !_playerFacingRight;
-        // transform.Rotate(0f, 180f, 0f);
 
         // Flip the character by changing localScale.x
         Vector3 newScale = transform.localScale;
@@ -106,10 +99,20 @@ public class PlayerController : MonoBehaviour
         transform.localScale = newScale;
         
         // Flip the FirePoint direction
-        float rotationValue = (_firePoint.rotation.y == 0) ? 180f : 0f;
-        _firePoint.rotation = Quaternion.Euler(0f, rotationValue, 0f);
+        Vector3 firePointScale = _firePoint.localScale;
+        firePointScale.x *= -1;
+        _firePoint.localScale = firePointScale;
     }
 
+    private void Fire()
+    {
+        // Determine the rotation based on the orientation of the fire point
+        Quaternion bulletRotation = (_firePoint.localScale.x > 0) ? _firePoint.rotation : Quaternion.Euler(0f, 180f, 0f);
+
+        // Instantiate(whatToSpawn, whereToSpawn, adjustedRotation)
+        Instantiate(_bulletPrefab, _firePoint.position, bulletRotation);
+
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
