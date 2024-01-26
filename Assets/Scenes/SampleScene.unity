@@ -415,8 +415,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d915796dd3f54dd3a29870b1c80dfaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 30
-  moveOffset: {x: 3, y: 0}
+  moveSpeed: 5
+  moveRange: 5
   health: 10
 --- !u!50 &704436030
 Rigidbody2D:
@@ -719,7 +719,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 542069534428496351, guid: 96a4e64d37b1349ffbbfca3443d962eb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 542069534428496351, guid: 96a4e64d37b1349ffbbfca3443d962eb, type: 3}
       propertyPath: m_LocalPosition.y
