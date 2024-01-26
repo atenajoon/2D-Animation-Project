@@ -126,6 +126,8 @@ public class PlayerController : MonoBehaviour
         // check if the player is hit by Enemy
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            // ** add a safeTime after each hit **
+            // ** add Auch audio **
             if(health <= 0)
                 Die();
 
