@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
 
     private void Die ()
     {
-        Debug.Log("Died");
+        Debug.Log("Enemy Died");
         Destroy(gameObject);
     }
 }

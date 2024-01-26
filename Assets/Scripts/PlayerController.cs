@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public Transform _firePoint;
     public GameObject _bulletPrefab;
     private Rigidbody2D _rigidbody;
+     public int health = 3;
     private bool _isGrounded = false;
     private bool _playerFacingRight = true;
     private bool _isFiring = false; // equivalent to GetButtonDown()/GetButtonUp()
@@ -121,8 +122,23 @@ public class PlayerController : MonoBehaviour
         {
             _isGrounded = true;
         }
+
+        // check if the player is hit by Enemy
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            if(health <= 0)
+                Die();
+
+            health--;
+            Debug.Log("Health: " + health);
+        }
     }
 
+    private void Die()
+    {
+        Debug.Log("Player Died");
+        Destroy(gameObject);
+    }
     private void OnEnable()
     {
         playerActionControls.Enable();
