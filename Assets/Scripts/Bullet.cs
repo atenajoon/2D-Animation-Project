@@ -25,6 +25,12 @@ public class Bullet : MonoBehaviour
             Debug.Log("hitInfo: " + hitInfo.name);
         }
 
-        Destroy(gameObject); // destroy the bullet
+        Destroy(gameObject); // destroy the bullet on Collision
     }
+
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject); // destroy the bullet out of the scene
+    }
+
 }
