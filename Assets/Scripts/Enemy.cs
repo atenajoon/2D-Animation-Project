@@ -31,7 +31,8 @@ public class Enemy : MonoBehaviour
 
         transform.Translate(movement);
 
-
+        // Mathf.Abs(...) takes the absolute value of that difference. 
+        // This ensures that the comparison is based on the magnitude of the difference rather than its direction
         if (Mathf.Abs(transform.position.x - originalPosition.x) >= moveRange)
         {
             // Change direction when reaching the move range
