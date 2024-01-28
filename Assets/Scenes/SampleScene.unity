@@ -144,7 +144,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &240044377
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -312,8 +312,8 @@ MonoBehaviour:
   animator: {fileID: 240044382}
   _firePoint: {fileID: 1843705290}
   _bulletPrefab: {fileID: 4904765837914799082, guid: d824d75116a0143aca967b281b29d09a, type: 3}
-  _moveSpeed: 5
-  _jumpForce: 5
+  _moveSpeed: 7
+  _jumpForce: 7
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,7 +415,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d915796dd3f54dd3a29870b1c80dfaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 5
+  moveRange: 5
   health: 10
+--- !u!50 &704436030
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704436025}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &1285241622
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,7 +460,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!70 &1285241624
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -696,11 +719,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 542069534428496351, guid: 96a4e64d37b1349ffbbfca3443d962eb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.34
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 542069534428496351, guid: 96a4e64d37b1349ffbbfca3443d962eb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.95353675
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 542069534428496351, guid: 96a4e64d37b1349ffbbfca3443d962eb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -736,6 +759,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6681300004487520314, guid: 96a4e64d37b1349ffbbfca3443d962eb, type: 3}
       propertyPath: m_Name
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6681300004487520314, guid: 96a4e64d37b1349ffbbfca3443d962eb, type: 3}
+      propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public Transform _firePoint;
     public GameObject _bulletPrefab;
     private Rigidbody2D _rigidbody;
+     public int health = 3;
     private bool _isGrounded = false;
     private bool _playerFacingRight = true;
     private bool _isFiring = false; // equivalent to GetButtonDown()/GetButtonUp()
@@ -48,38 +49,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-     void OnFire(InputAction.CallbackContext context)
-     {
-        if (context.performed)
-        {
-            // Button action Type only has Performed phase, once at pressing the key and once at release
-            // so I flip the _isFiring value on each Performed callback to simutale Started and Cancelled callbacks
-            _isFiring = !_isFiring;
-            animator.SetBool("IsShooting", _isFiring);
-        }
-     }
-
-    private void Fire()
-    {
-        // Instantiate(whatToSpawn, whereToSpawn, rotation)
-        Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
-    }
     private void OnMove()
     {
         // Read the movement input value each frame
-        float movementInput = playerActionControls.Land.Move.ReadValue<float>();
+        float _movementInput = playerActionControls.Land.Move.ReadValue<float>();
 
         // Horizontal movement of the player character
-        float horizontalMovement = movementInput * _moveSpeed;
+        float horizontalMovement = _movementInput * _moveSpeed;
         _rigidbody.velocity = new Vector2(horizontalMovement, _rigidbody.velocity.y);
 
         // Flip the character sprite to the move direction
-        if (movementInput > 0 && !_playerFacingRight)
+        if (_movementInput > 0 && !_playerFacingRight)
         {
             Flip();
         }
-        else if(movementInput < 0 && _playerFacingRight)
+        else if(_movementInput < 0 && _playerFacingRight)
         {
             Flip();
         }
@@ -95,10 +79,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnFire(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            // Button action Type only has Performed phase, once at pressing the key and once at release
+            // so I flip the _isFiring value on each Performed callback to simutale Started and Canceled callbacks
+            _isFiring = !_isFiring;
+            animator.SetBool("IsShooting", _isFiring);
+        }
+    }
+
     private void Flip()
     {
         _playerFacingRight = !_playerFacingRight;
-        // transform.Rotate(0f, 180f, 0f);
 
         // Flip the character by changing localScale.x
         Vector3 newScale = transform.localScale;
@@ -106,10 +100,20 @@ public class PlayerController : MonoBehaviour
         transform.localScale = newScale;
         
         // Flip the FirePoint direction
-        float rotationValue = (_firePoint.rotation.y == 0) ? 180f : 0f;
-        _firePoint.rotation = Quaternion.Euler(0f, rotationValue, 0f);
+        Vector3 firePointScale = _firePoint.localScale;
+        firePointScale.x *= -1;
+        _firePoint.localScale = firePointScale;
     }
 
+    private void Fire()
+    {
+        // Determine the rotation based on the orientation of the fire point
+        Quaternion bulletRotation = (_firePoint.localScale.x > 0) ? _firePoint.rotation : Quaternion.Euler(0f, 180f, 0f);
+
+        // Instantiate(whatToSpawn, whereToSpawn, adjustedRotation)
+        Instantiate(_bulletPrefab, _firePoint.position, bulletRotation);
+
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -118,8 +122,25 @@ public class PlayerController : MonoBehaviour
         {
             _isGrounded = true;
         }
+
+        // check if the player is hit by Enemy
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            // ** add a safeTime after each hit **
+            // ** add Auch audio **
+            if(health <= 0)
+                Die();
+
+            health--;
+            Debug.Log("Health: " + health);
+        }
     }
 
+    private void Die()
+    {
+        Debug.Log("Player Died");
+        Destroy(gameObject);
+    }
     private void OnEnable()
     {
         playerActionControls.Enable();
