@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -49,6 +50,53 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Check if the player is grounded when colliding with the ground
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            _isGrounded = true;
+        }
+
+     
+    }
+
+    public void SubtractHealth (int amount)
+    {
+        if (health > 0)
+        {
+            health -= amount;
+            Debug.Log("Health: " + health);
+        }
+        else
+            Die();
+            
+    }
+    // void OnTriggerEnter2D(Collider2D other)
+    // {
+    //        // check if the player is hit by Enemy
+    //     if (other.CompareTag("Enemy"))
+    //     {
+
+    //         // ** add a safeTime after each hit **
+    //         blinkGameObject = other;
+    //         if (isTimerRunning == false)
+    //         {
+    //             if (timer > 0 && isImmune == false)
+    //             {
+    //                 isImmune = true;
+    //                 isTimerRunning = true;
+
+    //                 health--;
+    //                 Debug.Log("Health: " + health);
+    //                 blinkGameObject.GetComponent<BlinkGameObject>().CallStartBlinkGameObject();
+    //             }
+    //         }    
+
+    //         // ** add Auch audio **
+    //         // blinkGameObject.GetComponent<AudioPlayer>().PlayAudio();
+    //     }
+    // }
     private void OnMove()
     {
         // Read the movement input value each frame
@@ -115,32 +163,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Check if the player is grounded when colliding with the ground
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            _isGrounded = true;
-        }
-
-        // check if the player is hit by Enemy
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            // ** add a safeTime after each hit **
-            // ** add Auch audio **
-            if(health <= 0)
-                Die();
-
-            health--;
-            Debug.Log("Health: " + health);
-        }
-    }
-
     private void Die()
     {
         Debug.Log("Player Died");
         Destroy(gameObject);
-    }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);    }
     private void OnEnable()
     {
         playerActionControls.Enable();
