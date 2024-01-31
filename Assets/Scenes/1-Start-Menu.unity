@@ -440,7 +440,10 @@ PrefabInstance:
         - Space key shoots
 
         - 5 bullets
-        kills the enemy'
+        kills the Enemy
+
+        - Touching the Enemy more than 3 time kills the
+        Player'
       objectReference: {fileID: 0}
     - target: {fileID: 3606363792885448311, guid: 1187591f8acaa475f9ab39da91d2267b, type: 3}
       propertyPath: m_fontColor.b
