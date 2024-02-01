@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     private Collider2D blinkGameObject;
     private bool isImmune;
     private bool isTimerRunning;
-    private float timeDuration = 1f;
+    private float timeDuration = 1.5f;
     private float timer;
 
 
