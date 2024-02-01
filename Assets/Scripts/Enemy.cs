@@ -7,25 +7,29 @@ public class Enemy : MonoBehaviour
     public float moveSpeed;
     public float moveRange;
     private bool movingRight = true;
-    private Vector2 originalPosition;
+    // private Vector2 originalPosition;
+    // private bool EnemyGoesRight;
     public int health = 10;
     private Collider2D blinkGameObject;
     private bool isImmune;
     private bool isTimerRunning;
-    private float timeDuration = 1.5f;
+    private float timeDuration = 1f;
     private float timer;
 
 
-    void Start()
+    void Awake()
     {
-        originalPosition = transform.position;
-
+        // originalPosition = transform.position;
+        InvokeRepeating("SwitchEnemyDirection", 0f, 2f);
         isImmune = false;
         isTimerRunning = false;
         timer = timeDuration;
     }
 
-
+    void SwitchEnemyDirection()
+    {
+        movingRight = !movingRight;
+    }
     // void Update()
     // {
     //     MoveEnemy();
@@ -65,11 +69,11 @@ public class Enemy : MonoBehaviour
 
         // Mathf.Abs(...) takes the absolute value of that difference. 
         // This ensures that the comparison is based on the magnitude of the difference rather than its direction
-        if (Mathf.Abs(transform.position.x - originalPosition.x) >= moveRange)
-        {
+        // if (Mathf.Abs(transform.position.x - originalPosition.x) >= moveRange)
+        // {
             // Change direction when reaching the move range
-            movingRight = !movingRight;
-        }
+            // movingRight = !movingRight;
+        // }
     }
 
     public void TakeDamage(int damage)
@@ -94,12 +98,10 @@ public class Enemy : MonoBehaviour
            // check if the player is hit by Enemy
         if (other.CompareTag("Player"))
         {
-            Debug.Log("CPlayer!!");
             // ** add a safeTime after each hit **
             blinkGameObject = other;
             if (isTimerRunning == false)
             {
-                Debug.Log("FalseTimeRunning");
                 if (timer > 0 && isImmune == false)
                 {
                     isImmune = true;
@@ -109,6 +111,11 @@ public class Enemy : MonoBehaviour
 
                     blinkGameObject.GetComponent<PlayerController>().SubtractHealth(1);
                     blinkGameObject.GetComponent<BlinkGameObject>().CallStartBlinkGameObject();
+                }
+                else 
+                {
+                    
+                    blinkGameObject.GetComponent<BlinkGameObject>().StopBlinkGameObject();
                 }
             }    
 
