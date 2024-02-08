@@ -71,11 +71,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext context)
     {
+        // if (context.performed) {}
+           
+
         // This is the "jump" action callback method
         if(_isGrounded)
         {
             _rigidbody.AddForce(new Vector2(0f, _jumpForce), ForceMode2D.Impulse);
             _isGrounded = false;
+            animator.SetBool("IsJumping", true);
         }
     }
 
@@ -121,6 +125,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             _isGrounded = true;
+            animator.SetBool("IsJumping", false);
         }
 
         // check if the player is hit by Enemy
