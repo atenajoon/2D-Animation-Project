@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public Transform _firePoint;
     public GameObject _bulletPrefab;
     private Rigidbody2D _rigidbody;
-     public int health = 3;
+    public int health = 3;
     private bool _isGrounded = false;
     private bool _playerFacingRight = true;
     private bool _isFiring = false; // equivalent to GetButtonDown()/GetButtonUp()
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     
         if (_fireTimer >= _fireRate)
         {
-            if(_isFiring)
+            if(_isFiring && _isGrounded)
                 Fire();
 
             _fireTimer = 0f; // Reset the timer
@@ -51,30 +51,33 @@ public class PlayerController : MonoBehaviour
 
     private void OnMove()
     {
-        // Read the movement input value each frame
-        float _movementInput = playerActionControls.Land.Move.ReadValue<float>();
+        if(!_isFiring)
+        {
+            // Read the movement input value each frame
+            float _movementInput = playerActionControls.Land.Move.ReadValue<float>();
 
-        if(_movementInput != 0)
-        {
-            animator.SetBool("IsMoving", true);
-        }
-        else
-        {
-            animator.SetBool("IsMoving", false);
-        }
+            if(_movementInput != 0)
+            {
+                animator.SetBool("IsMoving", true);
+            }
+            else
+            {
+                animator.SetBool("IsMoving", false);
+            }
 
-        // Horizontal movement of the player character
-        float horizontalMovement = _movementInput * _moveSpeed;
-        _rigidbody.velocity = new Vector2(horizontalMovement, _rigidbody.velocity.y);
+            // Horizontal movement of the player character
+            float horizontalMovement = _movementInput * _moveSpeed;
+            _rigidbody.velocity = new Vector2(horizontalMovement, _rigidbody.velocity.y);
 
-        // Flip the character sprite to the move direction
-        if (_movementInput > 0 && !_playerFacingRight)
-        {
-            Flip();
-        }
-        else if(_movementInput < 0 && _playerFacingRight)
-        {
-            Flip();
+            // Flip the character sprite to the move direction
+            if (_movementInput > 0 && !_playerFacingRight)
+            {
+                Flip();
+            }
+            else if(_movementInput < 0 && _playerFacingRight)
+            {
+                Flip();
+            }
         }
     }
 
