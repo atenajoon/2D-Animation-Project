@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
     private void OnJump(InputAction.CallbackContext context)
     {
         // This is the "jump" action callback method
-        if(_isGrounded)
+        if(_isGrounded && !_isFiring) 
         {
             _rigidbody.AddForce(new Vector2(0f, _jumpForce), ForceMode2D.Impulse);
             _isGrounded = false;
