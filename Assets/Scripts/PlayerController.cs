@@ -54,6 +54,15 @@ public class PlayerController : MonoBehaviour
         // Read the movement input value each frame
         float _movementInput = playerActionControls.Land.Move.ReadValue<float>();
 
+        if(_movementInput != 0)
+        {
+            animator.SetBool("IsMoving", true);
+        }
+        else
+        {
+            animator.SetBool("IsMoving", false);
+        }
+
         // Horizontal movement of the player character
         float horizontalMovement = _movementInput * _moveSpeed;
         _rigidbody.velocity = new Vector2(horizontalMovement, _rigidbody.velocity.y);
@@ -71,9 +80,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext context)
     {
-        // if (context.performed) {}
-           
-
         // This is the "jump" action callback method
         if(_isGrounded)
         {
