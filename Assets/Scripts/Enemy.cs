@@ -22,7 +22,15 @@ public class Enemy : MonoBehaviour
         MoveEnemy();
     }
 
-
+   void OnCollisionEnter2D(Collision2D collision)
+    {
+        // check if it hits the player
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            movingRight = !movingRight;
+        }
+    }
+    
     private void MoveEnemy()
     {
         float horizontalMovement = movingRight ? 1f : -1f;
