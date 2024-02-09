@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public Transform _firePoint;
     public GameObject _bulletPrefab;
     private Rigidbody2D _rigidbody;
-     public int health = 3;
+    public int health = 3;
     private bool _isGrounded = false;
     private bool _playerFacingRight = true;
     private bool _isFiring = false; // equivalent to GetButtonDown()/GetButtonUp()
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     
         if (_fireTimer >= _fireRate)
         {
-            if(_isFiring)
+            if(_isFiring && _isGrounded)
                 Fire();
 
             _fireTimer = 0f; // Reset the timer
@@ -52,7 +52,17 @@ public class PlayerController : MonoBehaviour
     private void OnMove()
     {
         // Read the movement input value each frame
-        float _movementInput = playerActionControls.Land.Move.ReadValue<float>();
+        float _movementInput = !_isFiring ? playerActionControls.Land.Move.ReadValue<float>() : 0;
+ 
+
+        if(_movementInput != 0)
+        {
+            animator.SetBool("IsMoving", true);
+        }
+        else
+        {
+            animator.SetBool("IsMoving", false);
+        }
 
         // Horizontal movement of the player character
         float horizontalMovement = _movementInput * _moveSpeed;
@@ -72,10 +82,11 @@ public class PlayerController : MonoBehaviour
     private void OnJump(InputAction.CallbackContext context)
     {
         // This is the "jump" action callback method
-        if(_isGrounded)
+        if(_isGrounded && !_isFiring) 
         {
             _rigidbody.AddForce(new Vector2(0f, _jumpForce), ForceMode2D.Impulse);
             _isGrounded = false;
+            animator.SetBool("IsJumping", true);
         }
     }
 
@@ -121,6 +132,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             _isGrounded = true;
+            animator.SetBool("IsJumping", false);
         }
 
         // check if the player is hit by Enemy
