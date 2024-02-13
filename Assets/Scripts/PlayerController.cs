@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -173,7 +174,10 @@ public class PlayerController : MonoBehaviour
             // ** add a safeTime after each hit **
             // ** add Auch audio **
             if(health <= 0)
+            {
                 Die();
+                SceneManager.LoadScene(0);
+            }
 
             health--;
             Debug.Log("Health: " + health);
