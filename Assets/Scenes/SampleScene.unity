@@ -205,8 +205,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 240044376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.56, y: -0.053, z: 0}
-  m_LocalScale: {x: 1.4786162, y: 1.4784489, z: 1}
+  m_LocalPosition: {x: -1.8252, y: 1.1016, z: 0}
+  m_LocalScale: {x: 2.0526152, y: 2.3804505, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1843705290}
@@ -313,8 +313,8 @@ MonoBehaviour:
   _firePoint: {fileID: 1843705290}
   _bulletPrefab: {fileID: 4904765837914799082, guid: d824d75116a0143aca967b281b29d09a, type: 3}
   health: 3
-  _moveSpeed: 7
-  _jumpForce: 7
+  _moveSpeed: 10
+  _jumpForce: 9
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,12 +720,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 542069534428496351, guid: 96a4e64d37b1349ffbbfca3443d962eb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9493
+      objectReference: {fileID: 0}
+    - target: {fileID: 542069534428496351, guid: 96a4e64d37b1349ffbbfca3443d962eb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.304394
+      objectReference: {fileID: 0}
+    - target: {fileID: 542069534428496351, guid: 96a4e64d37b1349ffbbfca3443d962eb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: 9.9746
       objectReference: {fileID: 0}
     - target: {fileID: 542069534428496351, guid: 96a4e64d37b1349ffbbfca3443d962eb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -0.6956
       objectReference: {fileID: 0}
     - target: {fileID: 542069534428496351, guid: 96a4e64d37b1349ffbbfca3443d962eb, type: 3}
       propertyPath: m_LocalPosition.z
