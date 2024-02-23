@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class PlayerController : MonoBehaviour
     private float _fireTimer = 0f; // Timer to control firing rate
     private float _fireRate = 0.1f; // Time delay between firing bullets
     [SerializeField] private float _moveSpeed, _jumpForce;
+    public TextMeshProUGUI playerHealthText;
+    public TextMeshProUGUI enemyHealthText;
     
     void Awake()
     {
@@ -180,6 +183,7 @@ public class PlayerController : MonoBehaviour
             }
 
             health--;
+            playerHealthText.text = "PlayerHealth: " + health.ToString();
             Debug.Log("Health: " + health);
         }
     }
