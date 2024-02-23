@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Enemy : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class Enemy : MonoBehaviour
     private bool movingRight = true;
     private Vector2 originalPosition;
     public int health = 10;
-
+    public TextMeshProUGUI enemyHealthText;
 
     void Start()
     {
@@ -52,6 +53,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        enemyHealthText.text = "EnemyHealth: " + health.ToString();
         Debug.Log("Health: "+ health);
 
         if(health <= 0)

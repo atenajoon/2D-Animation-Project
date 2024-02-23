@@ -443,6 +443,7 @@ MonoBehaviour:
   moveSpeed: 9
   moveRange: 9
   health: 20
+  enemyHealthText: {fileID: 302064220}
 --- !u!50 &704436030
 Rigidbody2D:
   serializedVersion: 4
