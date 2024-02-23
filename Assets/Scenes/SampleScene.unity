@@ -442,7 +442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 9
   moveRange: 9
-  health: 20
+  health: 10
   enemyHealthText: {fileID: 302064220}
 --- !u!50 &704436030
 Rigidbody2D:
@@ -708,7 +708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5561921113129427451, guid: 1df60d0bf44e54f359260a15171ff2dc, type: 3}
       propertyPath: m_text
-      value: 'EnemyHealth: 20'
+      value: 'EnemyHealth: 10'
       objectReference: {fileID: 0}
     - target: {fileID: 6441311755365134610, guid: 1df60d0bf44e54f359260a15171ff2dc, type: 3}
       propertyPath: m_Name
