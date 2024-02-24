@@ -27,11 +27,16 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        if(timer > 0) {
+        if (timer > 0)
+        {
             timer -= Time.deltaTime;
             UpdateTimerDisplay(timer);
-        } 
-        else Flash();
+        }
+        else
+        {
+            // Stop all Player's input actions
+            Flash();
+        }
 
         if(flasher < 0) SceneManager.LoadScene(0);
     }
