@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private bool _isFiring = false; // equivalent to GetButtonDown()/GetButtonUp()
     private float _fireTimer = 0f; // Timer to control firing rate
     private float _fireRate = 0.1f; // Time delay between firing bullets
-    [SerializeField] private float _moveSpeed, _jumpForce;
+    public float moveSpeed, jumpForce;
     public TextMeshProUGUI playerHealthText;
     public TextMeshProUGUI enemyHealthText;
     
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Horizontal movement of the player character
-        float horizontalMovement = _movementInput * _moveSpeed;
+        float horizontalMovement = _movementInput * moveSpeed;
         _rigidbody.velocity = new Vector2(horizontalMovement, _rigidbody.velocity.y);
 
         // Flip the character sprite to the move direction
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
         // This is the "jump" action callback method
         if(_isGrounded && !_isFiring) 
         {
-            _rigidbody.AddForce(new Vector2(0f, _jumpForce), ForceMode2D.Impulse);
+            _rigidbody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
             _isGrounded = false;
             animator.SetBool("IsJumping", true);
         }
