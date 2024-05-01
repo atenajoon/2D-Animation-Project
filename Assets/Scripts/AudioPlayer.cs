@@ -6,6 +6,7 @@ public class AudioPlayer : MonoBehaviour
 {
     private AudioSource audioSource;
     public AudioClip auchClip;
+    public AudioClip dishClip;
 
     // Start is called before the first frame update
     void Start()
@@ -13,7 +14,7 @@ public class AudioPlayer : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         // Check if AudioClips are assigned
-        if (auchClip == null)
+        if (auchClip == null || dishClip == null)
         {
             Debug.LogError("One or more audio clips are not assigned to CollisionTriggerAudioPlayer.");
             return;
