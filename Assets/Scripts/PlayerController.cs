@@ -7,6 +7,7 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+    private AudioPlayer audioPlayer; // Adding this field to hold a reference to the AudioPlayer script
     private PlayerActionControls playerActionControls; // Get access to the PlayerActionControls to detect the inputs. this field will contain the actions wrapper instance
     public Animator animator;
     public Transform _firePoint;
@@ -24,6 +25,8 @@ public class PlayerController : MonoBehaviour
     
     void Awake()
     {
+        // Getting reference to the AudioPlayer script attached to the same GameObject
+        audioPlayer = GetComponent<AudioPlayer>();
         // Instantiate the actions wrapper class
         playerActionControls = new PlayerActionControls();
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -160,6 +163,8 @@ public class PlayerController : MonoBehaviour
         // Instantiate(whatToSpawn, whereToSpawn, adjustedRotation)
         Instantiate(_bulletPrefab, _firePoint.position, bulletRotation);
 
+        // Play the shooting sound
+        audioPlayer.PlayAudioClip(audioPlayer.dishClip);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -174,6 +179,7 @@ public class PlayerController : MonoBehaviour
         // check if the player is hit by Enemy
         if (collision.gameObject.CompareTag("Enemy"))
         {
+
             // ** add a safeTime after each hit **
             // ** add Auch audio **
             if(health <= 0)
