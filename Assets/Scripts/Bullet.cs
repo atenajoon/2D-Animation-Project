@@ -11,6 +11,11 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (_rigidbody == null)
+        {
+            Debug.LogError("_rigidbody is not assigned to Bullet object.");
+            return;
+        }
         // tell the bullet to fly forward on spawn
         // I am using "right" instead of "forwrd" bcs forward is for Z axis and in 2D game we don't have Z axis. so "right" does the work for the X axis
         _rigidbody.velocity = transform.right * _speed;

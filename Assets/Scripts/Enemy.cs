@@ -15,6 +15,11 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        if (enemyHealthText == null)
+        {
+            Debug.LogError("Health text is not assigned to the Enemy Object.");
+            return;
+        }
         originalPosition = transform.position;
     }
 
