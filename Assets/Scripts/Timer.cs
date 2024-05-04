@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class Timer : MonoBehaviour
 {
     private PlayerController playerController;
-    private float timeDuration = 1f * 10f;
+    private float timeDuration = 1f * 15f;
     private float timer;
     private float flashTimer;
     private float flashLength = 1f;
